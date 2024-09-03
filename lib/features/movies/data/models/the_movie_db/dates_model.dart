@@ -8,8 +8,10 @@ class Dates {
   });
 
   factory Dates.fromJson(Map<String, dynamic> json) => Dates(
-        maximum: json["maximum"] ? DateTime.parse(json["maximum"]) : null,
-        minimum: json["minimum"] ? DateTime.parse(json["minimum"]) : null,
+        maximum:
+            json["maximum"] != null ? DateTime.parse(json["maximum"]) : null,
+        minimum:
+            json["minimum"] != null ? DateTime.parse(json["minimum"]) : null,
       );
 
   Map<String, dynamic> toJson() => {

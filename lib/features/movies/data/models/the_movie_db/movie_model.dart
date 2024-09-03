@@ -44,9 +44,9 @@ class MovieModel {
         popularity: json["popularity"].toDouble(),
         posterPath: json["poster_path"] ?? '',
         releaseDate:
-            json["release_date"] ? DateTime.parse(json["release_date"]) : null,
+            json["release_date"] != null ? DateTime.parse(json["release_date"]) : null,
         title: json["title"],
-        video: json["video"],
+        video:  json["video"] ,
         voteAverage: json["vote_average"].toDouble() ?? 0.0,
         voteCount: json["vote_count"] ?? 0,
       );

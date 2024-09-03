@@ -3,6 +3,7 @@ import 'package:cinema_app/features/movies/data/models/the_movie_db/now_playing_
 import 'package:cinema_app/features/movies/domain/datasources/movie_datasource.dart';
 import 'package:cinema_app/features/movies/domain/entities/movie_entity.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 class MovieDataSourceImpl implements MovieDataSource {
   final dio = Dio(BaseOptions(
@@ -18,12 +19,15 @@ class MovieDataSourceImpl implements MovieDataSource {
     try {
       final response = await dio.get("/movie/now_playing");
 
-      List<Movie> movies = NowPlayingMovies.fromJson(response.data)
-          .results
-          .map((e) => e.toEntity())
-          .toList();
+      final NowPlayingMovies playingMoviesResponse =
+          NowPlayingMovies.fromJson(response.data);
+
+      List<Movie> movies =
+          playingMoviesResponse.results.map((e) => e.toEntity()).toList();
+
       return movies;
     } catch (err) {
+      debugPrint("getPlayingNow DATASOURCE IMPL ERROR $err");
       throw Exception(err);
     }
   }
