@@ -4,7 +4,7 @@ import 'package:cinema_app/features/movies/domain/datasources/movie_datasource.d
 import 'package:cinema_app/features/movies/domain/entities/movie_entity.dart';
 import 'package:dio/dio.dart';
 
-class MovieDataSourceImplementation implements MovieDataSource {
+class MovieDataSourceImpl implements MovieDataSource {
   final dio = Dio(BaseOptions(
     baseUrl: 'https://api.themoviedb.org/3',
     queryParameters: {
