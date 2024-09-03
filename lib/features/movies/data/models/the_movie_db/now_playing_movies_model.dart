@@ -8,7 +8,7 @@ NowPlayingMovies usersFromJson(String str) =>
 String usersToJson(NowPlayingMovies data) => json.encode(data.toJson());
 
 class NowPlayingMovies {
-  final Dates dates;
+  final Dates? dates;
   final int page;
   final List<MovieModel> results;
   final int totalPages;
@@ -24,7 +24,7 @@ class NowPlayingMovies {
 
   factory NowPlayingMovies.fromJson(Map<String, dynamic> json) =>
       NowPlayingMovies(
-        dates: Dates.fromJson(json["dates"]),
+        dates: json["dates"] != null ? Dates.fromJson(json["dates"]) : null,
         page: json["page"],
         results: List<MovieModel>.from(
             json["results"].map((x) => MovieModel.fromJson(x))),
@@ -33,7 +33,7 @@ class NowPlayingMovies {
       );
 
   Map<String, dynamic> toJson() => {
-        "dates": dates.toJson(),
+        "dates": dates?.toJson(),
         "page": page,
         "results": List<dynamic>.from(results.map((x) => x.toJson())),
         "total_pages": totalPages,
